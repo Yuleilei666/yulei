@@ -34,7 +34,10 @@ export default {
         };
     },
     created() {
-        this.getNewImage();
+        // this.getNewImage();
+        this.axios.get('/api?name=yulei').then(res => {
+                console.log(res,'----------');
+            });
     },
     watch: {
         page() {
@@ -53,9 +56,7 @@ export default {
 
         onSubmit() {
             //fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=%E8%AE%A1%E7%AE%97
-            this.axios.get('/api?name=yulei').then(res => {
-                console.log(res,'----------');
-            });
+
 
             let form = {
                 ...this.form
