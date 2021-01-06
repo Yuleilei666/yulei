@@ -36,7 +36,7 @@ export default {
     created() {
         // this.getNewImage();
         this.axios.get('/api?name=yulei').then(res => {
-                console.log(res,'----------');
+                console.log(res,'----33333------');
             });
     },
     watch: {
