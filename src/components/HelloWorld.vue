@@ -54,7 +54,7 @@ export default {
         onSubmit() {
             //fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=%E8%AE%A1%E7%AE%97
             this.axios.get('https://yulei.vercel.app/api?name=yulei').then(res => {
-                console.log(res);
+                console.log(res,'----------');
             });
 
             let form = {
