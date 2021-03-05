@@ -20,7 +20,6 @@
 </template>
 
 <script>
-const Qs = require('qs');
 export default {
   data() {
     return {
@@ -56,32 +55,8 @@ export default {
       };
       console.log(form);
       let translatename;
-
       this.axios
-        .post(
-          `/youdao/translate_o/smartresult=dict&smartresult=rule`,
-          Qs.stringify({
-            i: form.name,
-            from: 'zh-CHS',
-            to: 'en',
-            smartresult: 'dict',
-            client: 'fanyideskweb',
-            salt: '16149644890816',
-            sign: 'f7a3040dc680160d4d528c7887884882',
-            lts: '1614964489081',
-            bv: '7b07590bbf1761eedb1ff6dbfac3c1f0',
-            doctype: 'json',
-            version: '2.1',
-            keyfrom: 'fanyi.web',
-            action: 'FY_BY_CLICKBUTTION'
-          }),
-
-          {
-            headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-            }
-          }
-        )
+        .get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`)
         .then(res => {
           translatename = res.data.translateResult[0][0].tgt;
         })
