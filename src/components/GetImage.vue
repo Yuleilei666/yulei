@@ -59,7 +59,7 @@ export default {
 
       this.axios
         .post(
-          `/youdao/translate_o`,
+          `/youdao/translate_o/smartresult=dict&smartresult=rule`,
           Qs.stringify({
             i: form.name,
             from: 'zh-CHS',
