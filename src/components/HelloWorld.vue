@@ -31,16 +31,7 @@ export default {
     };
   },
   created() {
-    // const translate = require('google-translate-api');
-
-    // this.axios.get('apis/api/config?key= bruce123').then(res => {});
     this.getNewImage();
-    this.axios.get('/youdao/translate?&doctype=json&type=AUTO&i=计算').then(res => {
-      console.log(res, '----33333-----111-');
-    });
-    // setInterval(() => {
-    //   this.axios.get('apis/api/config?key= bruce123').then(res => {});
-    // }, 1000);
   },
   watch: {
     page() {
@@ -65,23 +56,25 @@ export default {
       };
       console.log(form);
 
-      this.axios.get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`).then(res => {
-        console.log(res, '----33333-----111-');
-      });
-
-      const qs = require('qs');
-      let url = `https://wall.alphacoders.com/api2.0/get.php?auth=1a1e07617b922b49f1f1efb53cf1326f&method=search&term=${form.name}&width=1920&height=1080&page=${this.page}`;
-
       this.axios
-        .get(url, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
+        .get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`)
         .then(res => {
-          console.log(res);
+          translatename = res.data.translateResult[0][0].tgt;
+        })
+        .then(() => {
+          let url = `https://wall.alphacoders.com/api2.0/get.php?auth=1a1e07617b922b49f1f1efb53cf1326f&method=search&term=${translatename}&width=1920&height=1080&page=${this.page}`;
 
-          // this.urls = res.data.wallpapers;
+          this.axios
+            .get(url, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            .then(res => {
+              console.log(res);
+
+              this.urls = res.data.wallpapers;
+            });
         });
     },
 
