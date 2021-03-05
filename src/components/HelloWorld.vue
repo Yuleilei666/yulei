@@ -1,6 +1,6 @@
 <template>
   <div class="box">
-    <!-- <el-form ref="form" :model="form" label-width="80px" :inline="true">
+    <el-form ref="form" :model="form" label-width="80px" :inline="true">
       <el-form-item label="名称">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
@@ -14,7 +14,7 @@
       <div class="block" v-for="url in urls" :key="url.id">
         <el-image class="item" :src="url.url_image" fit="contain"></el-image>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
 
     // this.axios.get('apis/api/config?key= bruce123').then(res => {});
     this.getNewImage();
-    this.axios.get('/youdao/translate?&doctype=json&type=AUTO&i=%E8%AE%A1%E7%AE%97').then(res => {
+    this.axios.get('/youdao/translate?&doctype=json&type=AUTO&i=计算').then(res => {
       console.log(res, '----33333-----111-');
     });
     // setInterval(() => {
@@ -64,6 +64,11 @@ export default {
         ...this.form
       };
       console.log(form);
+
+      this.axios.get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`).then(res => {
+        console.log(res, '----33333-----111-');
+      });
+
       const qs = require('qs');
       let url = `https://wall.alphacoders.com/api2.0/get.php?auth=1a1e07617b922b49f1f1efb53cf1326f&method=search&term=${form.name}&width=1920&height=1080&page=${this.page}`;
 
