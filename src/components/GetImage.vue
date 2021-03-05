@@ -3,7 +3,7 @@
     <div>
       <el-input
         v-model="form.name"
-        v-on:keyup.enter="·onSubmit"
+        v-on:keyup.enter="onSubmit"
         style="width:300px;margin-right:20px"
       ></el-input>
 
