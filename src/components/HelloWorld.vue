@@ -35,8 +35,8 @@ export default {
 
     // this.axios.get('apis/api/config?key= bruce123').then(res => {});
     this.getNewImage();
-    this.axios.get('/youdao').then(res => {
-      console.log(res, '----33333------');
+    this.axios.get('/youdao/translate?&doctype=json&type=AUTO&i=%E8%AE%A1%E7%AE%97').then(res => {
+      console.log(res, '----33333-----111-');
     });
     // setInterval(() => {
     //   this.axios.get('apis/api/config?key= bruce123').then(res => {});
