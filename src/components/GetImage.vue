@@ -20,6 +20,7 @@
 </template>
 
 <script>
+const Qs = require('qs');
 export default {
   data() {
     return {
@@ -55,8 +56,24 @@ export default {
       };
       console.log(form);
       let translatename;
+
       this.axios
-        .get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`)
+        .post(
+          `/youdao/translate`,
+          Qs.stringify({
+            i: form.name,
+            from: 'zh-CHS',
+            to: 'en',
+
+            doctype: 'json'
+          }),
+
+          {
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            }
+          }
+        )
         .then(res => {
           translatename = res.data.translateResult[0][0].tgt;
         })
