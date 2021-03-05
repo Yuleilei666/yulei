@@ -3,7 +3,7 @@
     <div>
       <el-input
         v-model="form.name"
-        v-on:keyup.enter="onSubmit"
+        v-on:keyup.enter="·onSubmit"
         style="width:300px;margin-right:20px"
       ></el-input>
 
@@ -28,7 +28,9 @@ export default {
       },
 
       urls: [],
-      page: 1
+      page: 1,
+      url:
+        'https://wall.alphacoders.com/api2.0/get.php?auth=1a1e07617b922b49f1f1efb53cf1326f&method=search&&width=1920&height=1080'
     };
   },
   created() {
@@ -54,19 +56,7 @@ export default {
       console.log(form);
       let translatename;
       this.axios
-        .post(`/youdao/translate`, {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-          },
-          data: {
-            i: form.name,
-            from: 'zh-CHS',
-            to: 'en',
-            smartresult: 'dict',
-            doctype: 'json',
-            version: '2.1'
-          }
-        })
+        .get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`)
         .then(res => {
           translatename = res.data.translateResult[0][0].tgt;
         })
