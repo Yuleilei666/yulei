@@ -59,13 +59,21 @@ export default {
 
       this.axios
         .post(
-          `/youdao/translate`,
+          `/youdao/translate_o`,
           Qs.stringify({
             i: form.name,
             from: 'zh-CHS',
             to: 'en',
-
-            doctype: 'json'
+            smartresult: 'dict',
+            client: 'fanyideskweb',
+            salt: '16149644890816',
+            sign: 'f7a3040dc680160d4d528c7887884882',
+            lts: '1614964489081',
+            bv: '7b07590bbf1761eedb1ff6dbfac3c1f0',
+            doctype: 'json',
+            version: '2.1',
+            keyfrom: 'fanyi.web',
+            action: 'FY_BY_CLICKBUTTION'
           }),
 
           {
