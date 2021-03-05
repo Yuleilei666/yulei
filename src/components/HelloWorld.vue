@@ -55,7 +55,7 @@ export default {
         ...this.form
       };
       console.log(form);
-
+      let translatename;
       this.axios
         .get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`)
         .then(res => {
