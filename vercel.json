@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/youdao/(.*)",
+            "destination": "/api/index"
+        }
+    ]
+}
