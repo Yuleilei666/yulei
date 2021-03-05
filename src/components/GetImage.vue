@@ -54,14 +54,17 @@ export default {
       console.log(form);
       let translatename;
       this.axios
-        .post(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`, {
+        .post(`/youdao/translate`, {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
           },
           data: {
             i: form.name,
             from: 'zh-CHS',
-            to: 'en'
+            to: 'en',
+            smartresult: 'dict',
+            doctype: 'json',
+            version: '2.1'
           }
         })
         .then(res => {
