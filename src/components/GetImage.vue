@@ -36,6 +36,18 @@ export default {
   created() {
     this.getNewImage();
   },
+  mounted() {
+    window.addEventListener('scroll', function() {
+      console.log(document.documentElement.scrollTop); //代表目前滚动条和最上方的距离多长
+      console.log(document.documentElement.scrollHeight); //代表整个滚动条多长
+      console.log(document.documentElement.clientHeight);
+      console.log(
+        document.documentElement.scrollHeight -
+          document.documentElement.scrollTop -
+          document.documentElement.clientHeight
+      );
+    });
+  },
   watch: {
     page() {
       if (this.form.name == '') {
@@ -47,34 +59,33 @@ export default {
   },
 
   methods: {
-    onSubmit() {
+    async onSubmit() {
       //fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=%E8%AE%A1%E7%AE%97
 
       let form = {
         ...this.form
       };
       console.log(form);
-      let translatename;
-      this.axios
-        .get(`/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`)
-        .then(res => {
-          translatename = res.data.translateResult[0][0].tgt;
-        })
-        .then(() => {
-          let url = `https://wall.alphacoders.com/api2.0/get.php?auth=1a1e07617b922b49f1f1efb53cf1326f&method=search&term=${translatename}&width=1920&height=1080&page=${this.page}`;
+      var reg = new RegExp('[\\u4E00-\\u9FFF]+', 'g');
+      let name;
+      if (reg.test(form.name)) {
+        let translatename = await this.axios.get(
+          `/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`
+        );
+        name = translatename.data.translateResult[0][0].tgt;
+      } else {
+        name = form.name;
+      }
 
-          this.axios
-            .get(url, {
-              headers: {
-                'Content-Type': 'application/json'
-              }
-            })
-            .then(res => {
-              console.log(res);
+      let url = `https://wall.alphacoders.com/api2.0/get.php?auth=1a1e07617b922b49f1f1efb53cf1326f&method=search&term=${name}&width=1920&height=1080&page=${this.page}`;
 
-              this.urls = res.data.wallpapers;
-            });
-        });
+      let { data } = await this.axios.get(url, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      this.urls = data.wallpapers;
     },
 
     getNewImage() {

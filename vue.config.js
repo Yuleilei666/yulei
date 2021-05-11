@@ -25,6 +25,15 @@ module.exports = {
         pathRewrite: {
           '^/apis': ''
         }
+      },
+      '/youdao': {
+        //代理地址
+        target: 'http://fanyi.youdao.com', //测试环境
+        changeOrigin: true, //是否跨域run
+        ws: true,
+        pathRewrite: {
+          '^/youdao': ''
+        }
       }
     }
   }
