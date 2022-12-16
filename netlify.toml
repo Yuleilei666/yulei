@@ -2,9 +2,9 @@
 ## This rule redirects to an external API, signing requests with a secret
 
 [[redirects]]
-  from = "/youdao"
-  to = "http://fanyi.youdao.com"
+  from = "/youdao/*"
+  to = "https://fanyi.youdao.com"
   status = 200
-  force = true
+  force = false
   headers = {X-From = "Netlify"}
-  signed = "API_SIGNATURE_TOKEN"
+
