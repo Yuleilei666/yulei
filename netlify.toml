@@ -3,8 +3,8 @@
 
 [[redirects]]
   from = "/youdao/*"
-  to = "https://fanyi.youdao.com"
+  to = "https://fanyi.youdao.com/:splat"
   status = 200
   force = false
-  headers = {X-From = "Netlify"}
+
 
