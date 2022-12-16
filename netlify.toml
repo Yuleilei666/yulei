@@ -8,3 +8,11 @@
   force = false
 
 
+[[redirects]]
+  from = "/alphacodersUrl/*"
+  to = "https://wall.alphacoders.com/:splat"
+  status = 200
+  force = false
+
+
+

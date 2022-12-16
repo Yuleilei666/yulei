@@ -52,7 +52,7 @@ export default {
         });
 
         fetch(
-            "https://wall.alphacoders.com/search.php?search=%E4%BA%94%E6%98%9F%E7%BA%A2%E6%97%97"
+            "/alphacodersUrl/search.php?search=%E4%BA%94%E6%98%9F%E7%BA%A2%E6%97%97"
         )
             .then((result) => {
                 console.log(result);
