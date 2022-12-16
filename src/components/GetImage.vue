@@ -70,7 +70,7 @@ export default {
       let name;
       if (reg.test(form.name)) {
         let translatename = await this.axios.get(
-          `/youdao/translate?&doctype=json&type=AUTO&i=${form.name}`
+          `http://fanyi.youdao.com/translate?&doctype=json&type=AUTO&i=${form.name}`
         );
         name = translatename.data.translateResult[0][0].tgt;
       } else {
